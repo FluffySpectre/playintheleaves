@@ -1,0 +1,261 @@
+[gd_scene load_steps=32 format=3 uid="uid://bl5t5eaf4rlyh"]
+
+[ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
+[ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
+[ext_resource type="PackedScene" uid="uid://cjibll2twb7tt" path="res://scenes/leaf_rigid.tscn" id="1_qfeja"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_s4hkv"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="2_iwq2w"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_jf8yp"]
+[ext_resource type="Texture2D" uid="uid://dnyu6orsqfy7k" path="res://sprites/player.png" id="5_oj4tp"]
+[ext_resource type="Script" path="res://scripts/repulsor_area.gd" id="6_kyo8q"]
+[ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="7_1qorn"]
+[ext_resource type="AudioStream" uid="uid://bjtt66fvbd4rc" path="res://sound/leaf_step.wav" id="7_hhyfs"]
+[ext_resource type="AudioStream" uid="uid://dxmu4kyjbx42b" path="res://sound/leaf_step_2.wav" id="8_1tt7k"]
+[ext_resource type="Script" path="res://scripts/player_footsteps.gd" id="8_ktd1p"]
+[ext_resource type="AudioStream" uid="uid://dqemsbu15nllc" path="res://sound/leaf_step_3.wav" id="9_iecnf"]
+[ext_resource type="AudioStream" uid="uid://cqh6p70fcmvdc" path="res://sound/leaf_step_4.wav" id="10_bah5n"]
+[ext_resource type="AudioStream" uid="uid://hxypmm6kuixe" path="res://sound/leaf_step_5.wav" id="11_2gan1"]
+[ext_resource type="AudioStream" uid="uid://c0lnw3i3il3eg" path="res://sound/leaf_step_6.wav" id="12_416l1"]
+[ext_resource type="AudioStream" uid="uid://b46f326sgi5qh" path="res://sound/leaf_step_7.wav" id="13_hyw6j"]
+[ext_resource type="AudioStream" uid="uid://cqr88q6eeagvq" path="res://sound/leaf_step_8.wav" id="14_2d0nx"]
+[ext_resource type="AudioStream" uid="uid://b6pufse3aa23e" path="res://sound/leaf_step_9.wav" id="15_dpn4o"]
+[ext_resource type="Script" path="res://scripts/sound_manager.gd" id="18_5xbia"]
+[ext_resource type="Theme" uid="uid://dwwvc1q2verre" path="res://ui/ui_theme.tres" id="20_vd0us"]
+[ext_resource type="Texture2D" uid="uid://cs7i56fchdnw4" path="res://sprites/white.png" id="21_djpmy"]
+[ext_resource type="Script" path="res://scripts/dialog_panel.gd" id="22_uymeo"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="24_pj2oj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl2iw"]
+size = Vector2(20, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r15mk"]
+size = Vector2(285, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xd4y0"]
+size = Vector2(298, 13)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ginym"]
+radius = 11.0
+height = 62.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x62xn"]
+height = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vcqp"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhd4s"]
+radius = 3.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_s4hkv")
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_5ade0")
+volume_db = 10.0
+autoplay = true
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("18_5xbia")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_7q0dq")
+
+[node name="Leafs" type="Node" parent="."]
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="WallWest" type="Sprite2D" parent="Walls"]
+position = Vector2(-168, -1)
+rotation = 1.5708
+scale = Vector2(16.021, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallWest"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallWest/StaticBody2D"]
+shape = SubResource("RectangleShape2D_yl2iw")
+
+[node name="WallEast" type="Sprite2D" parent="Walls"]
+position = Vector2(169, -1)
+rotation = 1.5708
+scale = Vector2(16.021, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallEast"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallEast/StaticBody2D"]
+shape = SubResource("RectangleShape2D_yl2iw")
+
+[node name="Floor" type="Sprite2D" parent="."]
+position = Vector2(2.08165e-12, 149)
+scale = Vector2(16.021, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor"]
+collision_layer = 7
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_yl2iw")
+
+[node name="LeafSpawner" type="Area2D" parent="." node_paths=PackedStringArray("spawn_container")]
+position = Vector2(-143, -201)
+script = ExtResource("2_iwq2w")
+spawn_list = Array[PackedScene]([ExtResource("1_qfeja")])
+autostart = true
+spawn_delay = 0.5
+max_spawned_objects = 100
+spawn_container = NodePath("../Leafs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeafSpawner"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_r15mk")
+
+[node name="FloorLeafSpawner" type="Area2D" parent="." node_paths=PackedStringArray("spawn_container")]
+position = Vector2(-157, 132)
+script = ExtResource("2_iwq2w")
+spawn_list = Array[PackedScene]([ExtResource("1_qfeja")])
+autostart = true
+max_spawned_objects = 10
+spawn_container = NodePath("../Leafs")
+one_shot_spawn = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorLeafSpawner"]
+position = Vector2(1, -3.5)
+shape = SubResource("RectangleShape2D_xd4y0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 51)
+collision_mask = 5
+floor_block_on_wall = false
+script = ExtResource("4_jf8yp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_ginym")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("5_oj4tp")
+
+[node name="PlayerFootsteps" type="Node" parent="Player" node_paths=PackedStringArray("repulsor_area")]
+script = ExtResource("8_ktd1p")
+footstep_sounds_on_leafs = Array[AudioStream]([ExtResource("7_hhyfs"), ExtResource("8_1tt7k"), ExtResource("9_iecnf"), ExtResource("10_bah5n"), ExtResource("11_2gan1"), ExtResource("12_416l1"), ExtResource("13_hyw6j"), ExtResource("14_2d0nx"), ExtResource("15_dpn4o")])
+repulsor_area = NodePath("../RepulsorArea")
+
+[node name="RepulsorArea" type="Area2D" parent="Player"]
+position = Vector2(0, 15)
+collision_layer = 3
+collision_mask = 3
+gravity_point_center = Vector2(1, 2.08165e-12)
+gravity_direction = Vector2(1, 2.08165e-12)
+script = ExtResource("6_kyo8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RepulsorArea"]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_x62xn")
+
+[node name="Tree" type="Node2D" parent="."]
+
+[node name="Leafs" type="Node2D" parent="Tree"]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+node_a = NodePath("../LeafAnchor")
+node_b = NodePath("../RigidBody2D")
+
+[node name="LeafAnchor" type="StaticBody2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/LeafAnchor"]
+shape = SubResource("CircleShape2D_1vcqp")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+collision_layer = 2
+collision_mask = 2
+mass = 0.01
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/RigidBody2D"]
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_jhd4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
+position = Vector2(0, 8)
+rotation = 2.45393
+texture = ExtResource("7_1qorn")
+
+[node name="Intro" type="Node2D" parent="."]
+
+[node name="Backdrop" type="TextureRect" parent="Intro"]
+visible = false
+modulate = Color(0.164706, 0.164706, 0.164706, 0.505882)
+z_index = 1
+offset_left = -165.0
+offset_top = -164.0
+offset_right = 164.0
+offset_bottom = 165.0
+texture = ExtResource("21_djpmy")
+
+[node name="Panel" type="Panel" parent="Intro"]
+z_index = 2
+offset_left = -76.0
+offset_top = -38.0
+offset_right = 81.0
+offset_bottom = 43.0
+theme = ExtResource("20_vd0us")
+script = ExtResource("22_uymeo")
+dialog_texts = Array[String](["Welcome!", "Here you can relax and play a little with the leaves.", "Oh, there is sound too!", "The controls are WASD to move, Space to jump, Shift to Run...", "...and Escape to quit.", "Let it rain!"])
+
+[node name="TextLabel" type="Label" parent="Intro/Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 150.0
+offset_bottom = 59.0
+theme = ExtResource("20_vd0us")
+text = "Welcome!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Intro/Panel"]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 61.0
+offset_right = 152.0
+offset_bottom = 80.0
+text = "(Space)"
+
+[node name="PauseMenu" type="Node2D" parent="."]
+script = ExtResource("24_pj2oj")
+
+[node name="MenuPanel" type="Panel" parent="PauseMenu"]
+z_index = 3
+offset_left = -76.0
+offset_top = -47.0
+offset_right = 81.0
+offset_bottom = 47.0
+theme = ExtResource("20_vd0us")
+
+[node name="ContinueButton" type="Button" parent="PauseMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 19.0
+offset_right = 132.0
+offset_bottom = 43.0
+text = "Continue"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/MenuPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 51.0
+offset_right = 132.0
+offset_bottom = 75.0
+text = "Quit"
+
+[connection signal="pressed" from="PauseMenu/MenuPanel/ContinueButton" to="PauseMenu" method="continue_game"]
+[connection signal="pressed" from="PauseMenu/MenuPanel/QuitButton" to="PauseMenu" method="quit_game"]
