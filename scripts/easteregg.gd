@@ -4,5 +4,5 @@ class_name Easteregg extends RigidBody2D
 func _ready():
 	body_entered.connect(on_leaf_entered)
 
-func on_leaf_entered(leaf):
+func on_leaf_entered(_leaf):
 	GameManager.instance.easteregg_triggered()

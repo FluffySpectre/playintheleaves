@@ -17,6 +17,7 @@ polygon = PackedVector2Array(-1, -9, 0, -12, 2, -12, 6, -12, 6, -13, 8, -13, 8, 
 
 [node name="Sprite2D_16x16" type="Sprite2D" parent="."]
 texture = ExtResource("1_up7pm")
+hframes = 2
 script = ExtResource("2_ha7bg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

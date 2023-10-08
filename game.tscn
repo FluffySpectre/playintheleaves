@@ -201,6 +201,8 @@ fps = 5.0
 position = Vector2(0, 8)
 rotation = 2.45393
 texture = ExtResource("7_1qorn")
+hframes = 2
+frame = 1
 
 [node name="Intro" type="Node2D" parent="."]
 
