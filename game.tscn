@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bl5t5eaf4rlyh"]
+[gd_scene load_steps=35 format=3 uid="uid://bl5t5eaf4rlyh"]
 
 [ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
 [ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
@@ -20,8 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://cqr88q6eeagvq" path="res://sound/leaf_step_8.wav" id="14_2d0nx"]
 [ext_resource type="AudioStream" uid="uid://b6pufse3aa23e" path="res://sound/leaf_step_9.wav" id="15_dpn4o"]
 [ext_resource type="Script" path="res://scripts/sound_manager.gd" id="18_5xbia"]
+[ext_resource type="Script" path="res://scripts/easteregg.gd" id="20_dgu1b"]
 [ext_resource type="Theme" uid="uid://dwwvc1q2verre" path="res://ui/ui_theme.tres" id="20_vd0us"]
 [ext_resource type="Texture2D" uid="uid://cs7i56fchdnw4" path="res://sprites/white.png" id="21_djpmy"]
+[ext_resource type="Script" path="res://scripts/simple_animated_sprite.gd" id="22_7cgae"]
+[ext_resource type="Texture2D" uid="uid://b6tsvrtopypqx" path="res://sprites/shine.png" id="22_au4gc"]
 [ext_resource type="Script" path="res://scripts/dialog_panel.gd" id="22_uymeo"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="24_pj2oj"]
 
@@ -178,10 +181,21 @@ position = Vector2(139, -104)
 collision_layer = 2
 collision_mask = 2
 mass = 0.01
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("20_dgu1b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/RigidBody2D"]
 position = Vector2(1, 8)
 shape = SubResource("CircleShape2D_jhd4s")
+
+[node name="Shine" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(0, 8)
+texture = ExtResource("22_au4gc")
+hframes = 4
+script = ExtResource("22_7cgae")
+fps = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
 position = Vector2(0, 8)

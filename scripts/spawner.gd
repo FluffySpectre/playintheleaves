@@ -15,6 +15,9 @@ var spawned_objects: int = 0
 
 @onready var spawn_area = $CollisionShape2D.shape.get_rect()
 
+func is_spawning() -> bool:
+	return do_spawn and spawned_objects < max_spawned_objects
+
 func _ready():
 	if autostart:
 		start_spawn()
