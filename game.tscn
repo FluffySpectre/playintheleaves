@@ -62,6 +62,7 @@ autoplay = true
 script = ExtResource("18_5xbia")
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -2
 texture = ExtResource("1_7q0dq")
 
 [node name="Leafs" type="Node" parent="."]
