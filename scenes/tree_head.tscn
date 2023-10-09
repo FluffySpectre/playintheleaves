@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://bovpd7ieg7cct"]
+
+[ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="1_pd57h"]
+[ext_resource type="Script" path="res://scripts/eye_blinking.gd" id="2_7qbsr"]
+[ext_resource type="Script" path="res://scripts/apply_force_towards_target.gd" id="2_dnsnw"]
+[ext_resource type="Script" path="res://scripts/activate_with_delay.gd" id="3_hy350"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2k4q0"]
+radius = 133.034
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrxxh"]
+size = Vector2(156.5, 97)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5f2nr"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6pb1b"]
+radius = 7.07107
+
+[node name="TreeHead" type="Node2D"]
+
+[node name="HeadCircularGravityArea2D" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, -30)
+collision_layer = 2
+collision_mask = 2
+gravity_space_override = 3
+gravity_point = true
+gravity_point_center = Vector2(2.08165e-12, 2.08165e-12)
+gravity_direction = Vector2(2.08165e-12, 2.08165e-12)
+gravity = 4096.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCircularGravityArea2D"]
+shape = SubResource("CircleShape2D_2k4q0")
+
+[node name="HeadFloorPushUpLeftArea2D" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, 100)
+collision_layer = 2
+collision_mask = 2
+gravity_space_override = 3
+gravity_point_center = Vector2(0.5, -1)
+gravity_direction = Vector2(0.5, -1)
+gravity = 2067.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadFloorPushUpLeftArea2D"]
+position = Vector2(-80.25, 0)
+shape = SubResource("RectangleShape2D_wrxxh")
+
+[node name="HeadFloorPushUpRightArea2D" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, 100)
+collision_layer = 2
+collision_mask = 2
+gravity_space_override = 3
+gravity_point_center = Vector2(-0.5, -1)
+gravity_direction = Vector2(-0.5, -1)
+gravity = 2067.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadFloorPushUpRightArea2D"]
+position = Vector2(79, 0)
+shape = SubResource("RectangleShape2D_wrxxh")
+
+[node name="Eyes" type="Node2D" parent="."]
+
+[node name="EyeLeft" type="Node2D" parent="Eyes"]
+position = Vector2(-30, -30)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Eyes/EyeLeft"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+node_a = NodePath("../StaticBody2DEyeLeft")
+node_b = NodePath("../PupilBody")
+softness = 1.25
+
+[node name="StaticBody2DEyeLeft" type="StaticBody2D" parent="Eyes/EyeLeft"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eyes/EyeLeft/StaticBody2DEyeLeft"]
+shape = SubResource("CircleShape2D_5f2nr")
+
+[node name="PupilBody" type="RigidBody2D" parent="Eyes/EyeLeft"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 2.66454e-15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eyes/EyeLeft/PupilBody"]
+shape = SubResource("CircleShape2D_6pb1b")
+
+[node name="Leaf-16x16" type="Sprite2D" parent="Eyes/EyeLeft/PupilBody"]
+visible = false
+modulate = Color(0.937255, 0.0509804, 0.141176, 1)
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_pd57h")
+hframes = 2
+
+[node name="ApplyForceTowardsTarget" type="Node" parent="Eyes/EyeLeft/PupilBody"]
+script = ExtResource("2_dnsnw")
+target_node_name = "Game/Player"
+
+[node name="EyeRight" type="Node2D" parent="Eyes"]
+position = Vector2(30, -30)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Eyes/EyeRight"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+node_a = NodePath("../StaticBody2DEyeLeft")
+node_b = NodePath("../PupilBody")
+softness = 1.25
+
+[node name="StaticBody2DEyeLeft" type="StaticBody2D" parent="Eyes/EyeRight"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eyes/EyeRight/StaticBody2DEyeLeft"]
+shape = SubResource("CircleShape2D_5f2nr")
+
+[node name="PupilBody" type="RigidBody2D" parent="Eyes/EyeRight"]
+collision_layer = 0
+collision_mask = 0
+mass = 0.01
+gravity_scale = 2.66454e-15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Eyes/EyeRight/PupilBody"]
+shape = SubResource("CircleShape2D_6pb1b")
+
+[node name="Leaf-16x16" type="Sprite2D" parent="Eyes/EyeRight/PupilBody"]
+visible = false
+modulate = Color(0.937255, 0.0509804, 0.141176, 1)
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_pd57h")
+hframes = 2
+
+[node name="ApplyForceTowardsTarget" type="Node" parent="Eyes/EyeRight/PupilBody"]
+script = ExtResource("2_dnsnw")
+target_node_name = "Game/Player"
+
+[node name="EyeBlinking" type="Node2D" parent="Eyes" node_paths=PackedStringArray("eye_left_node", "eye_right_node")]
+process_mode = 4
+script = ExtResource("2_7qbsr")
+eye_left_node = NodePath("../EyeLeft/PupilBody/Leaf-16x16")
+eye_right_node = NodePath("../EyeRight/PupilBody/Leaf-16x16")
+min_time_between_blinks = 0.5
+
+[node name="ActivateWithDelay" type="Node" parent="Eyes" node_paths=PackedStringArray("target_node")]
+script = ExtResource("3_hy350")
+target_node = NodePath("../EyeBlinking")
+delay = 4.0

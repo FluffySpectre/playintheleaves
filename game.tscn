@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bl5t5eaf4rlyh"]
+[gd_scene load_steps=37 format=3 uid="uid://bl5t5eaf4rlyh"]
 
 [ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
 [ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
@@ -27,6 +27,14 @@
 [ext_resource type="Texture2D" uid="uid://b6tsvrtopypqx" path="res://sprites/shine.png" id="22_au4gc"]
 [ext_resource type="Script" path="res://scripts/dialog_panel.gd" id="22_uymeo"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="24_pj2oj"]
+[ext_resource type="Texture2D" uid="uid://cvoc1jopi10w3" path="res://sprites/tree.png" id="28_wq2t1"]
+[ext_resource type="PackedScene" uid="uid://bovpd7ieg7cct" path="res://scenes/tree_head.tscn" id="30_mxs7k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vcqp"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jhd4s"]
+radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yl2iw"]
 size = Vector2(20, 15)
@@ -44,28 +52,72 @@ height = 62.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x62xn"]
 height = 62.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1vcqp"]
-radius = 1.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jhd4s"]
-radius = 3.0
-
 [node name="Game" type="Node2D"]
 script = ExtResource("1_s4hkv")
+tree_head_scene = ExtResource("30_mxs7k")
 
-[node name="AmbientSound" type="AudioStreamPlayer2D" parent="."]
+[node name="Sound" type="Node" parent="."]
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("1_5ade0")
 volume_db = 10.0
 autoplay = true
 
-[node name="SoundManager" type="Node" parent="."]
+[node name="SoundManager" type="Node" parent="Sound"]
 script = ExtResource("18_5xbia")
 
 [node name="Background" type="Sprite2D" parent="."]
-z_index = -2
+z_index = -3
 texture = ExtResource("1_7q0dq")
 
-[node name="Leafs" type="Node" parent="."]
+[node name="Tree" type="Node2D" parent="."]
+z_index = -2
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("28_wq2t1")
+hframes = 3
+
+[node name="Leafs" type="Node2D" parent="Tree"]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+node_a = NodePath("../LeafAnchor")
+node_b = NodePath("../RigidBody2D")
+
+[node name="LeafAnchor" type="StaticBody2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/LeafAnchor"]
+shape = SubResource("CircleShape2D_1vcqp")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Tree/Leafs"]
+position = Vector2(139, -104)
+collision_layer = 2
+collision_mask = 2
+mass = 0.01
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("20_dgu1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/RigidBody2D"]
+position = Vector2(1, 8)
+shape = SubResource("CircleShape2D_jhd4s")
+
+[node name="Shine" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
+modulate = Color(1, 1, 1, 0.862745)
+position = Vector2(0, 8)
+texture = ExtResource("22_au4gc")
+hframes = 4
+script = ExtResource("22_7cgae")
+fps = 5.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
+position = Vector2(0, 8)
+rotation = 2.45393
+texture = ExtResource("7_1qorn")
+hframes = 2
+frame = 1
 
 [node name="Walls" type="Node" parent="."]
 
@@ -119,7 +171,7 @@ position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_r15mk")
 
 [node name="FloorLeafSpawner" type="Area2D" parent="." node_paths=PackedStringArray("spawn_container")]
-position = Vector2(-157, 132)
+position = Vector2(-161, 131)
 script = ExtResource("2_iwq2w")
 spawn_list = Array[PackedScene]([ExtResource("1_qfeja")])
 autostart = true
@@ -131,7 +183,7 @@ one_shot_spawn = true
 position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_xd4y0")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Leafs" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(0, 53)
@@ -161,49 +213,6 @@ script = ExtResource("6_kyo8q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/RepulsorArea"]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_x62xn")
-
-[node name="Tree" type="Node2D" parent="."]
-
-[node name="Leafs" type="Node2D" parent="Tree"]
-
-[node name="PinJoint2D" type="PinJoint2D" parent="Tree/Leafs"]
-position = Vector2(139, -104)
-node_a = NodePath("../LeafAnchor")
-node_b = NodePath("../RigidBody2D")
-
-[node name="LeafAnchor" type="StaticBody2D" parent="Tree/Leafs"]
-position = Vector2(139, -104)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/LeafAnchor"]
-shape = SubResource("CircleShape2D_1vcqp")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="Tree/Leafs"]
-position = Vector2(139, -104)
-collision_layer = 2
-collision_mask = 2
-mass = 0.01
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("20_dgu1b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/RigidBody2D"]
-position = Vector2(1, 8)
-shape = SubResource("CircleShape2D_jhd4s")
-
-[node name="Shine" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
-modulate = Color(1, 1, 1, 0.862745)
-position = Vector2(0, 8)
-texture = ExtResource("22_au4gc")
-hframes = 4
-script = ExtResource("22_7cgae")
-fps = 5.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
-position = Vector2(0, 8)
-rotation = 2.45393
-texture = ExtResource("7_1qorn")
-hframes = 2
-frame = 1
 
 [node name="Intro" type="Node2D" parent="."]
 
@@ -273,6 +282,10 @@ offset_top = 51.0
 offset_right = 132.0
 offset_bottom = 75.0
 text = "Quit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TreeHeadParent" type="Node2D" parent="."]
 
 [connection signal="pressed" from="PauseMenu/MenuPanel/ContinueButton" to="PauseMenu" method="continue_game"]
 [connection signal="pressed" from="PauseMenu/MenuPanel/QuitButton" to="PauseMenu" method="quit_game"]
