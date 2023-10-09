@@ -17,8 +17,8 @@ var tree_head_timer: float = 0.0
 @onready var leaf_spawner: Spawner = $LeafSpawner
 @onready var intro_dialog: DialogPanel = $Intro/Panel
 @onready var easteregg_leaf_shine: Sprite2D = $Tree/Leafs/RigidBody2D/Shine
-@onready var tree_sprite: Sprite2D = $Tree/Sprite2D
 @onready var tree_head_parent: Node = $TreeHeadParent
+@onready var big_tree: BigTree = $Tree
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,7 +28,7 @@ func _ready():
 	
 	leaf_spawner.spawn_delay = 5
 	easteregg_leaf_shine.visible = false
-	tree_sprite.frame = 0
+	big_tree.anger_level = 0
 
 func _process(delta):
 	process_easteregg(delta)
@@ -42,7 +42,7 @@ func easteregg_triggered():
 		leaf_spawner.start_spawn()
 		easteregg_active = true
 		easteregg_shine_timer = 0.0
-		easteregg_cooldown_timer = 3.0
+		easteregg_cooldown_timer = 5.0
 		tree_was_hit = false
 	else:
 		# if no activation, hint that there is something
@@ -58,12 +58,12 @@ func process_easteregg(delta):
 		easteregg_leaf_shine.visible = true
 	
 	if easteregg_active:
+		if not tree_was_hit:
+			hit_tree()
+			tree_was_hit = true
+		
 		if not leaf_spawner.is_spawning():
 			easteregg_cooldown_timer -= delta
-			
-			if not tree_was_hit:
-				hit_tree()
-				tree_was_hit = true
 		
 		if easteregg_cooldown_timer > 0.0:
 			easteregg_leaf_shine.visible = true
@@ -80,7 +80,7 @@ func process_easteregg(delta):
 				easteregg_leaf_shine.visible = false
 
 func hit_tree():
-	if tree_hits < tree_sprite.hframes - 1:
+	if tree_hits < 2:
 		tree_hits += 1
 	else:
 		# tree is angry
@@ -89,7 +89,7 @@ func hit_tree():
 			tree_head_spawns += 1
 			tree_head_timer = tree_head_spawns * 15.0
 			tree_head_visible = true
-	tree_sprite.frame = tree_hits
+	big_tree.anger_level = tree_hits
 	print("Tree hits: " + str(tree_hits))
 
 func instantiate_tree_head():
@@ -101,7 +101,7 @@ func despawn_tree_head():
 	tree_head_parent.get_child(0).queue_free()
 	tree_hits = 0
 	tree_head_visible = false
-	tree_sprite.frame = 0
+	big_tree.anger_level = 0
 
 func enable_player_control():
 	player_movement.toggle_player_control(true)

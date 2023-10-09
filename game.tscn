@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bl5t5eaf4rlyh"]
+[gd_scene load_steps=38 format=3 uid="uid://bl5t5eaf4rlyh"]
 
 [ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
 [ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="2_iwq2w"]
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_jf8yp"]
 [ext_resource type="Texture2D" uid="uid://dnyu6orsqfy7k" path="res://sprites/player.png" id="5_oj4tp"]
+[ext_resource type="Script" path="res://scripts/big_tree.gd" id="6_5s72s"]
 [ext_resource type="Script" path="res://scripts/repulsor_area.gd" id="6_kyo8q"]
 [ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="7_1qorn"]
 [ext_resource type="AudioStream" uid="uid://bjtt66fvbd4rc" path="res://sound/leaf_step.wav" id="7_hhyfs"]
@@ -72,8 +73,22 @@ texture = ExtResource("1_7q0dq")
 
 [node name="Tree" type="Node2D" parent="."]
 z_index = -2
+script = ExtResource("6_5s72s")
+fade_speed = 1.5
 
-[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+[node name="AngrySprite2D" type="Sprite2D" parent="Tree"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("28_wq2t1")
+hframes = 3
+frame = 2
+
+[node name="MiddleSprite2D" type="Sprite2D" parent="Tree"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("28_wq2t1")
+hframes = 3
+frame = 1
+
+[node name="NormalSprite2D" type="Sprite2D" parent="Tree"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("28_wq2t1")
 hframes = 3
