@@ -4,6 +4,7 @@ static var instance: GameManager
 var is_in_intro: bool = true
 var easteregg_active: bool = false
 var easteregg_shine_timer: float = 0.0
+var easteregg_cooldown_timer: float = 0.0
 
 @onready var player_movement: PlayerMovement = $Player
 @onready var leaf_spawner: Spawner = $LeafSpawner
@@ -25,19 +26,26 @@ func _process(delta):
 func easteregg_triggered():
 	# only start the extra spawn, if intro is over
 	# and the spawner is not already spawning
-	if not is_in_intro and not leaf_spawner.is_spawning():
+	if easteregg_cooldown_timer <= 0.0 and not is_in_intro and not leaf_spawner.is_spawning():
 		print ("Easteregg triggered!")
 		leaf_spawner.max_spawned_objects = 25
 		leaf_spawner.start_spawn()
 		easteregg_active = true
 		easteregg_shine_timer = 0.0
+		easteregg_cooldown_timer = 3.0
 	else:
 		# if no activation, hint that there is something
 		easteregg_shine_timer = 2.0
 
 func process_easteregg(delta):
+	if leaf_spawner.is_spawning():
+		easteregg_leaf_shine.visible = true
+	
 	if easteregg_active:
-		if leaf_spawner.is_spawning():
+		if not leaf_spawner.is_spawning():
+			easteregg_cooldown_timer -= delta
+		
+		if easteregg_cooldown_timer > 0.0:
 			easteregg_leaf_shine.visible = true
 		else:
 			easteregg_leaf_shine.visible = false
