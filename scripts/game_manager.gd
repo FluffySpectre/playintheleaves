@@ -54,8 +54,10 @@ func process_easteregg(delta):
 		if tree_head_timer <= 0.0:
 			despawn_tree_head()
 	
-	if leaf_spawner.is_spawning():
+	if leaf_spawner.is_spawning() or easteregg_shine_timer > 0.0:
 		easteregg_leaf_shine.visible = true
+	else:
+		easteregg_leaf_shine.visible = false
 	
 	if easteregg_active:
 		if not tree_was_hit:
@@ -65,19 +67,12 @@ func process_easteregg(delta):
 		if not leaf_spawner.is_spawning():
 			easteregg_cooldown_timer -= delta
 		
-		if easteregg_cooldown_timer > 0.0:
-			easteregg_leaf_shine.visible = true
-		else:
-			easteregg_leaf_shine.visible = false
+		if easteregg_cooldown_timer <= 0.0:
 			easteregg_active = false
 	else:
 		# hint for the player
 		if easteregg_shine_timer > 0.0:
 			easteregg_shine_timer -= delta
-			if (easteregg_shine_timer > 0.0):
-				easteregg_leaf_shine.visible = true
-			else:
-				easteregg_leaf_shine.visible = false
 
 func hit_tree():
 	if tree_hits < 2:
@@ -87,7 +82,7 @@ func hit_tree():
 		if not tree_head_visible:
 			instantiate_tree_head()
 			tree_head_spawns += 1
-			tree_head_timer = tree_head_spawns * 15.0
+			tree_head_timer = tree_head_spawns * 30.0
 			tree_head_visible = true
 	big_tree.anger_level = tree_hits
 	print("Tree hits: " + str(tree_hits))

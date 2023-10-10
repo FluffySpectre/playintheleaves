@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dxmu4kyjbx42b" path="res://sound/leaf_step_2.wav" id="8_1tt7k"]
 [ext_resource type="Script" path="res://scripts/player_footsteps.gd" id="8_ktd1p"]
 [ext_resource type="AudioStream" uid="uid://dqemsbu15nllc" path="res://sound/leaf_step_3.wav" id="9_iecnf"]
+[ext_resource type="Texture2D" uid="uid://btrsy7dgmreu" path="res://sprites/shine-2.png" id="9_nrcfk"]
 [ext_resource type="AudioStream" uid="uid://cqh6p70fcmvdc" path="res://sound/leaf_step_4.wav" id="10_bah5n"]
 [ext_resource type="AudioStream" uid="uid://hxypmm6kuixe" path="res://sound/leaf_step_5.wav" id="11_2gan1"]
 [ext_resource type="AudioStream" uid="uid://c0lnw3i3il3eg" path="res://sound/leaf_step_6.wav" id="12_416l1"]
@@ -25,7 +26,6 @@
 [ext_resource type="Theme" uid="uid://dwwvc1q2verre" path="res://ui/ui_theme.tres" id="20_vd0us"]
 [ext_resource type="Texture2D" uid="uid://cs7i56fchdnw4" path="res://sprites/white.png" id="21_djpmy"]
 [ext_resource type="Script" path="res://scripts/simple_animated_sprite.gd" id="22_7cgae"]
-[ext_resource type="Texture2D" uid="uid://b6tsvrtopypqx" path="res://sprites/shine.png" id="22_au4gc"]
 [ext_resource type="Script" path="res://scripts/dialog_panel.gd" id="22_uymeo"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="24_pj2oj"]
 [ext_resource type="Texture2D" uid="uid://cvoc1jopi10w3" path="res://sprites/tree.png" id="28_wq2t1"]
@@ -120,12 +120,11 @@ position = Vector2(1, 8)
 shape = SubResource("CircleShape2D_jhd4s")
 
 [node name="Shine" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
-modulate = Color(1, 1, 1, 0.862745)
 position = Vector2(0, 8)
-texture = ExtResource("22_au4gc")
-hframes = 4
+texture = ExtResource("9_nrcfk")
+hframes = 3
 script = ExtResource("22_7cgae")
-fps = 5.0
+fps = 3.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Tree/Leafs/RigidBody2D"]
 position = Vector2(0, 8)
