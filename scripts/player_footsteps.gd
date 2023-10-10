@@ -89,4 +89,4 @@ func play_footstep_sound():
 		var sound = footstep_sounds_on_leafs[random_index]
 		
 		# set and play it
-		SoundManager.instance.play(sound, 1.0)
+		SoundManager.instance.play(sound, randf_range(0.9, 1.2))
