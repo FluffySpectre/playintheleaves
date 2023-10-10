@@ -23,6 +23,10 @@ func _ready():
 		start_spawn()
 
 func _process(delta):
+	# debug
+	if Input.is_action_just_pressed("debug1"):
+		start_spawn()
+	
 	if not do_spawn or spawned_objects >= max_spawned_objects or one_shot_spawn:
 		return
 	

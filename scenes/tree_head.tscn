@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bovpd7ieg7cct"]
+[gd_scene load_steps=13 format=3 uid="uid://bovpd7ieg7cct"]
 
 [ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="1_pd57h"]
 [ext_resource type="Script" path="res://scripts/eye_blinking.gd" id="2_7qbsr"]
@@ -20,6 +20,9 @@ radius = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6pb1b"]
 radius = 7.07107
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3w7"]
+size = Vector2(28, 7)
+
 [node name="TreeHead" type="Node2D"]
 
 [node name="HeadCircularGravityArea2D" type="Area2D" parent="."]
@@ -33,6 +36,7 @@ gravity_direction = Vector2(2.08165e-12, 2.08165e-12)
 gravity = 4096.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCircularGravityArea2D"]
+position = Vector2(4, 6)
 shape = SubResource("CircleShape2D_2k4q0")
 
 [node name="HeadFloorPushUpLeftArea2D" type="Area2D" parent="."]
@@ -150,15 +154,14 @@ target_node = NodePath("../EyeBlinking")
 delay = 5.0
 
 [node name="Mouth" type="Node2D" parent="."]
-process_mode = 4
-visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Mouth"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mouth/StaticBody2D"]
-polygon = PackedVector2Array(-60, 8, -64, 12, -61, 21, -50, 37, -32, 50, -17, 55, -5, 57, 9, 57, 25, 53, 41, 44, 53, 34, 60, 26, 65, 11, 59, 8, 53, 24, 46, 31, 35, 39, 21, 47, 9, 50, -3, 51, -15, 49, -29, 44, -47, 31)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth/StaticBody2D"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_0i3w7")
 
 [node name="RandomMovement" type="Node" parent="." node_paths=PackedStringArray("target_node")]
 process_mode = 4
