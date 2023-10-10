@@ -147,7 +147,7 @@ min_time_between_blinks = 0.5
 [node name="ActivateWithDelay" type="Node" parent="Eyes" node_paths=PackedStringArray("target_node")]
 script = ExtResource("3_hy350")
 target_node = NodePath("../EyeBlinking")
-delay = 4.0
+delay = 5.0
 
 [node name="Mouth" type="Node2D" parent="."]
 process_mode = 4

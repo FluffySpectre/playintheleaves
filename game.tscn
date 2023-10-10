@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bl5t5eaf4rlyh"]
+[gd_scene load_steps=39 format=3 uid="uid://bl5t5eaf4rlyh"]
 
 [ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
 [ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://scripts/dialog_panel.gd" id="22_uymeo"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="24_pj2oj"]
 [ext_resource type="Texture2D" uid="uid://cvoc1jopi10w3" path="res://sprites/tree.png" id="28_wq2t1"]
+[ext_resource type="AudioStream" uid="uid://ccjx488t5n5nm" path="res://sound/click-2.wav" id="30_ifwco"]
 [ext_resource type="PackedScene" uid="uid://bovpd7ieg7cct" path="res://scenes/tree_head.tscn" id="30_mxs7k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vcqp"]
@@ -249,6 +250,7 @@ offset_bottom = 43.0
 theme = ExtResource("20_vd0us")
 script = ExtResource("22_uymeo")
 dialog_texts = Array[String](["Welcome!", "Here you can relax and play a little with the leaves.", "Oh, there is sound too!", "The controls are WASD to move, Space to jump, Shift to Run...", "...and Escape to quit.", "Let it rain!"])
+next_dialog_sound = ExtResource("30_ifwco")
 
 [node name="TextLabel" type="Label" parent="Intro/Panel"]
 layout_mode = 0

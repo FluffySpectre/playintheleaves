@@ -3,6 +3,7 @@ class_name DialogPanel extends Panel
 signal dialog_ended
 
 @export var dialog_texts: Array[String] = []
+@export var next_dialog_sound: AudioStream
 
 var current_dialog_text_index: int = 0
 
@@ -29,6 +30,8 @@ func next_dialog_text():
 	if current_dialog_text_index >= dialog_texts.size():
 		current_dialog_text_index = dialog_texts.size() - 1
 		close_dialog()
+	
+	SoundManager.instance.play(next_dialog_sound)
 
 func close_dialog():
 	visible = false
