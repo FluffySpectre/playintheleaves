@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c80hlehny3ax6"]
+
+[ext_resource type="Texture2D" uid="uid://cs7i56fchdnw4" path="res://sprites/white.png" id="1_0wem4"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="2_oy0ii"]
+[ext_resource type="PackedScene" uid="uid://cjibll2twb7tt" path="res://scenes/leaf_rigid.tscn" id="3_ndahj"]
+[ext_resource type="Script" path="res://scripts/pause_game.gd" id="4_8tu4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r50do"]
+size = Vector2(339, 20)
+
+[node name="screenshot_scene" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.372549, 0.8, 0.894118, 1)
+scale = Vector2(320, 320)
+texture = ExtResource("1_0wem4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Spawner" type="Area2D" parent="." node_paths=PackedStringArray("spawn_container")]
+position = Vector2(-157, -182)
+script = ExtResource("2_oy0ii")
+spawn_list = Array[PackedScene]([ExtResource("3_ndahj")])
+autostart = true
+spawn_delay = 0.05
+max_spawned_objects = 500
+spawn_container = NodePath("../Leafs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner"]
+shape = SubResource("RectangleShape2D_r50do")
+
+[node name="Leafs" type="Node" parent="."]
+
+[node name="PauseGame" type="Node" parent="."]
+script = ExtResource("4_8tu4x")
