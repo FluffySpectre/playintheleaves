@@ -21,7 +21,7 @@ radius = 16.0
 radius = 7.07107
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3w7"]
-size = Vector2(28, 7)
+size = Vector2(12, 12)
 
 [node name="TreeHead" type="Node2D"]
 
@@ -160,7 +160,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mouth/StaticBody2D"]
-position = Vector2(0, 20)
+position = Vector2(0, 22.25)
 shape = SubResource("RectangleShape2D_0i3w7")
 
 [node name="RandomMovement" type="Node" parent="." node_paths=PackedStringArray("target_node")]

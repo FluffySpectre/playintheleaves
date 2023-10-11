@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjibll2twb7tt"]
+[gd_scene load_steps=5 format=3 uid="uid://cjibll2twb7tt"]
 
 [ext_resource type="Script" path="res://scripts/set_random_z_index.gd" id="1_b72v7"]
-[ext_resource type="Texture2D" uid="uid://hhae2gykthx0" path="res://sprites/leaf.png" id="1_kan34"]
 [ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="1_up7pm"]
 [ext_resource type="Script" path="res://scripts/destroy_if_offscreen.gd" id="2_8x61r"]
 [ext_resource type="Script" path="res://scripts/adjust_color.gd" id="2_ha7bg"]
@@ -18,15 +17,10 @@ possible_indizes = Array[int]([0, -1])
 scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-1, -9, 0, -12, 2, -12, 6, -12, 6, -13, 8, -13, 8, -6, 10, -4, 6, -2, 6, 0, 10, 0, 13, 3, 11, 8, 7, 8, 6, 10, 6, 12, 4, 12, -1, 10, -4, 10, -7, 13, -10, 13, -10, 11, -6, 9, -6, 7, -8, 7, -13, 3, -13, 1, -11, -1, -11, -3, -12, -3, -12, -5, -10, -5, -10, -9, -9, -11, -7, -11, -6, -9, -4, -7, -1, -7)
 
-[node name="Sprite2D_16x16" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_up7pm")
 hframes = 2
 script = ExtResource("2_ha7bg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_kan34")
 
 [node name="DestroyIfOffscren" type="VisibleOnScreenNotifier2D" parent="."]
 script = ExtResource("2_8x61r")
