@@ -38,7 +38,7 @@ func easteregg_triggered():
 	# and the spawner is not already spawning
 	if easteregg_cooldown_timer <= 0.0 and not is_in_intro and not leaf_spawner.is_spawning():
 		print ("Easteregg triggered!")
-		leaf_spawner.max_spawned_objects = 25
+		leaf_spawner.max_spawned_objects = 15
 		leaf_spawner.start_spawn()
 		easteregg_active = true
 		easteregg_shine_timer = 0.0
