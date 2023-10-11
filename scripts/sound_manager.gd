@@ -1,7 +1,7 @@
 class_name SoundManager extends Node
 
-var num_players = 8
-var bus = "SFX"
+var num_players: int = 8
+var bus: String = "Master"
 
 var available_stream_player: Array[AudioStreamPlayer] = []
 var queue: Array[QueuedSound] = []
