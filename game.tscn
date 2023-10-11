@@ -302,10 +302,10 @@ text = "Quit"
 
 [node name="VolumeLabel" type="Label" parent="PauseMenu/MenuPanel"]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 84.0
-offset_right = 115.0
-offset_bottom = 103.0
+offset_left = 35.0
+offset_top = 82.0
+offset_right = 112.0
+offset_bottom = 101.0
 text = "Volume"
 
 [node name="VolumeHSlider" type="HSlider" parent="PauseMenu/MenuPanel"]
