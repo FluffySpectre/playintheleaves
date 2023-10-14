@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bl5t5eaf4rlyh"]
+[gd_scene load_steps=42 format=3 uid="uid://bl5t5eaf4rlyh"]
 
 [ext_resource type="AudioStream" uid="uid://btvt02j60adn2" path="res://sound/ambient.mp3" id="1_5ade0"]
 [ext_resource type="Texture2D" uid="uid://c3jus0k4afotp" path="res://sprites/game-view.png" id="1_7q0dq"]
@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dnyu6orsqfy7k" path="res://sprites/player.png" id="5_oj4tp"]
 [ext_resource type="Script" path="res://scripts/big_tree.gd" id="6_5s72s"]
 [ext_resource type="Script" path="res://scripts/repulsor_area.gd" id="6_kyo8q"]
+[ext_resource type="AudioStream" uid="uid://bpwyw7g5iceak" path="res://sound/tree_growl_2.wav" id="7_0g5e5"]
 [ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="7_1qorn"]
 [ext_resource type="AudioStream" uid="uid://bjtt66fvbd4rc" path="res://sound/leaf_step.wav" id="7_hhyfs"]
 [ext_resource type="AudioStream" uid="uid://dxmu4kyjbx42b" path="res://sound/leaf_step_2.wav" id="8_1tt7k"]
 [ext_resource type="Script" path="res://scripts/player_footsteps.gd" id="8_ktd1p"]
+[ext_resource type="AudioStream" uid="uid://d4i1vowudc4cq" path="res://sound/tree_growl_3.wav" id="8_lvjmb"]
 [ext_resource type="AudioStream" uid="uid://dqemsbu15nllc" path="res://sound/leaf_step_3.wav" id="9_iecnf"]
 [ext_resource type="Texture2D" uid="uid://btrsy7dgmreu" path="res://sprites/shine-2.png" id="9_nrcfk"]
 [ext_resource type="AudioStream" uid="uid://cqh6p70fcmvdc" path="res://sound/leaf_step_4.wav" id="10_bah5n"]
@@ -77,6 +79,7 @@ texture = ExtResource("1_7q0dq")
 z_index = -2
 script = ExtResource("6_5s72s")
 fade_speed = 1.5
+growl_sounds = Array[AudioStream]([ExtResource("7_0g5e5"), ExtResource("8_lvjmb")])
 
 [node name="AngrySprite2D" type="Sprite2D" parent="Tree"]
 position = Vector2(2.08165e-12, 2.08165e-12)
