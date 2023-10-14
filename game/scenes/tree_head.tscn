@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bovpd7ieg7cct"]
+[gd_scene load_steps=18 format=3 uid="uid://bovpd7ieg7cct"]
 
 [ext_resource type="Texture2D" uid="uid://jsmr8sckk8p4" path="res://sprites/leaf-16x16.png" id="1_pd57h"]
 [ext_resource type="Script" path="res://scripts/eye_blinking.gd" id="2_7qbsr"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" path="res://scripts/random_movement.gd" id="5_xwcv1"]
 [ext_resource type="AudioStream" uid="uid://bf4g6dqtaapi1" path="res://sound/rustling_leaves.wav" id="6_wjhfh"]
 [ext_resource type="Script" path="res://scripts/fade_out_audio_after_time.gd" id="7_bbh3q"]
+[ext_resource type="AudioStream" uid="uid://bipl3wo7ssmdr" path="res://sound/rustling_leaves_short.wav" id="8_cdlvb"]
+[ext_resource type="Script" path="res://scripts/sound_trigger_area.gd" id="8_hec8i"]
+[ext_resource type="AudioStream" uid="uid://bn6b5h8lh5xqc" path="res://sound/rustling_leaves_short_2.wav" id="10_y6e3i"]
+[ext_resource type="AudioStream" uid="uid://dxjqvy8qfswyv" path="res://sound/rustling_leaves_short_3.wav" id="11_47gkp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2k4q0"]
 radius = 133.034
@@ -22,6 +26,9 @@ radius = 7.07107
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i3w7"]
 size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5w6x"]
+size = Vector2(92, 24)
 
 [node name="TreeHead" type="Node2D"]
 
@@ -66,6 +73,14 @@ position = Vector2(79, 0)
 shape = SubResource("RectangleShape2D_wrxxh")
 
 [node name="Eyes" type="Node2D" parent="."]
+
+[node name="LookAtTargets" type="Node" parent="Eyes"]
+
+[node name="LookAtEyeLeftUp" type="Node2D" parent="Eyes/LookAtTargets"]
+position = Vector2(-30, -60)
+
+[node name="LookAtEyeRightUp" type="Node2D" parent="Eyes/LookAtTargets"]
+position = Vector2(30, -60)
 
 [node name="EyeLeft" type="Node2D" parent="Eyes"]
 position = Vector2(-30, -30)
@@ -179,3 +194,12 @@ autoplay = true
 [node name="FadeOutAudioAfterTime" type="Node" parent="RustlingLeavesAudioStreamPlayer2D"]
 script = ExtResource("7_bbh3q")
 delay_before_fade_out = 6.0
+
+[node name="SwooshLeafsTriggerArea2D" type="Area2D" parent="."]
+script = ExtResource("8_hec8i")
+sounds = Array[AudioStream]([ExtResource("8_cdlvb"), ExtResource("10_y6e3i"), ExtResource("11_47gkp")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwooshLeafsTriggerArea2D"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_f5w6x")
+debug_color = Color(0.227451, 0.619608, 0.45098, 0.419608)
