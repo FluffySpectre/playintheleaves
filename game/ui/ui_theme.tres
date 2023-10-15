@@ -167,6 +167,7 @@ corner_detail = 1
 anti_aliasing = false
 
 [resource]
+default_font = ExtResource("1_cco7n")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/fonts/font = ExtResource("1_cco7n")
 Button/styles/focus = SubResource("StyleBoxFlat_0fguy")
@@ -193,3 +194,4 @@ HSlider/styles/slider = SubResource("StyleBoxLine_eihyj")
 Label/font_sizes/font_size = 12
 Label/fonts/font = ExtResource("1_cco7n")
 Panel/styles/panel = SubResource("StyleBoxFlat_dtm1w")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)

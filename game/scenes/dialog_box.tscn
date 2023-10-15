@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwdkboedxrq3l"]
+
+[ext_resource type="Texture2D" uid="uid://dgkedt5naryk3" path="res://sprites/dialog-box.png" id="1_rl0v5"]
+[ext_resource type="Theme" uid="uid://dwwvc1q2verre" path="res://ui/ui_theme.tres" id="2_2qf0a"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_db8ee"]
+
+[node name="Dialog-box" type="Sprite2D"]
+self_modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.513726)
+position = Vector2(-13, -110)
+texture = ExtResource("1_rl0v5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = -130.0
+offset_top = -33.0
+offset_right = 130.0
+offset_bottom = 10.0
+theme = ExtResource("2_2qf0a")
+bbcode_enabled = true
+text = "Das ist ein Test [color=green]Hansi Mausi[/color] geht raus."
+scroll_active = false
+custom_effects = [SubResource("RichTextEffect_db8ee")]
