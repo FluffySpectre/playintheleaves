@@ -276,6 +276,16 @@ offset_right = 152.0
 offset_bottom = 80.0
 text = "(Space)"
 
+[node name="MadeByLabel" type="Label" parent="Intro/Panel"]
+offset_left = 113.0
+offset_top = 179.0
+offset_right = 233.0
+offset_bottom = 202.0
+theme = ExtResource("20_vd0us")
+text = "Made by Björn Bosse"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PauseMenu" type="Node2D" parent="."]
 script = ExtResource("24_pj2oj")
 
