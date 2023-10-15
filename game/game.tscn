@@ -277,6 +277,7 @@ offset_bottom = 80.0
 text = "(Space)"
 
 [node name="MadeByLabel" type="Label" parent="Intro/Panel"]
+layout_mode = 0
 offset_left = 113.0
 offset_top = 179.0
 offset_right = 233.0
