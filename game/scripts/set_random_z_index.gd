@@ -10,4 +10,3 @@ func _ready():
 		z_index = possible_indizes[0]
 	
 	#z_index = possible_indizes[randi() % possible_indizes.size()]
-

@@ -116,8 +116,8 @@ position = Vector2(139, -104)
 collision_layer = 2
 collision_mask = 2
 mass = 0.01
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("20_dgu1b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Leafs/RigidBody2D"]
