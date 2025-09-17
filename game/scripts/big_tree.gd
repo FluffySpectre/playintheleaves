@@ -13,23 +13,23 @@ var last_played_growl_index: int = -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if anger_level == 2:
-		tree_sprite_middle.modulate.a = lerp(tree_sprite_middle.modulate.a, 0.0, delta * fade_speed)
-	elif anger_level == 1:
-		tree_sprite_normal.modulate.a = lerp(tree_sprite_normal.modulate.a, 0.0, delta * fade_speed)
-	elif anger_level == 0:
-		tree_sprite_normal.modulate.a = lerp(tree_sprite_normal.modulate.a, 1.0, delta * fade_speed)
-		tree_sprite_middle.modulate.a = lerp(tree_sprite_middle.modulate.a, 1.0, delta * fade_speed)
+  if anger_level == 2:
+    tree_sprite_middle.modulate.a = lerp(tree_sprite_middle.modulate.a, 0.0, delta * fade_speed)
+  elif anger_level == 1:
+    tree_sprite_normal.modulate.a = lerp(tree_sprite_normal.modulate.a, 0.0, delta * fade_speed)
+  elif anger_level == 0:
+    tree_sprite_normal.modulate.a = lerp(tree_sprite_normal.modulate.a, 1.0, delta * fade_speed)
+    tree_sprite_middle.modulate.a = lerp(tree_sprite_middle.modulate.a, 1.0, delta * fade_speed)
 
-	if anger_level != last_anger_level:
-		last_anger_level = anger_level
-		play_growl()
-		
+  if anger_level != last_anger_level:
+    last_anger_level = anger_level
+    play_growl()
+    
 func play_growl():
-	# select a random steps sound
-	var sound_index = randi() % growl_sounds.size()
-	while sound_index == last_played_growl_index:
-		sound_index = randi() % growl_sounds.size()
-	last_played_growl_index = sound_index
-	SoundManager.instance.play(growl_sounds[sound_index])
-	
+  # select a random steps sound
+  var sound_index = randi() % growl_sounds.size()
+  while sound_index == last_played_growl_index:
+    sound_index = randi() % growl_sounds.size()
+  last_played_growl_index = sound_index
+  SoundManager.instance.play(growl_sounds[sound_index])
+  

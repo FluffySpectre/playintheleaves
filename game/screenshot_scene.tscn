@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c80hlehny3ax6"]
 
 [ext_resource type="Texture2D" uid="uid://cs7i56fchdnw4" path="res://sprites/white.png" id="1_0wem4"]
-[ext_resource type="Script" path="res://scripts/spawner.gd" id="2_oy0ii"]
+[ext_resource type="Script" uid="uid://bghksoal8jcv5" path="res://scripts/spawner.gd" id="2_oy0ii"]
 [ext_resource type="PackedScene" uid="uid://cjibll2twb7tt" path="res://scenes/leaf_rigid.tscn" id="3_ndahj"]
-[ext_resource type="Script" path="res://scripts/pause_game.gd" id="4_8tu4x"]
+[ext_resource type="Script" uid="uid://55agxbwe0cvm" path="res://scripts/pause_game.gd" id="4_8tu4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r50do"]
 size = Vector2(339, 20)
