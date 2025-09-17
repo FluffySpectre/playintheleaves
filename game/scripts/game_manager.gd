@@ -97,6 +97,10 @@ func despawn_tree_head():
   tree_hits = 0
   tree_head_visible = false
   big_tree.anger_level = 0
+  
+  # Wake up the sleeping leave rigidbodies
+  var first_leaf = get_node("Leafs").get_child(0) as RigidBody2D
+  first_leaf.apply_impulse(Vector2(0.1, 0.1), Vector2(0, -1))
 
 func enable_player_control():
   player_movement.toggle_player_control(true)
